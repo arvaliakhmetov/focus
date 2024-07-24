@@ -1,3 +1,3 @@
 This is a Kotlin Multiplatform project targeting Android, iOS.
 
-MVI playground with Websockets
+MVIKotlin(coroutines) playground with Websockets
