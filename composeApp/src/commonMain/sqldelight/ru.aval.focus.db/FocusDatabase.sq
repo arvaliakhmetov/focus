@@ -1,0 +1,54 @@
+CREATE TABLE IF NOT EXISTS Timer (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sec_key INTEGER NOT NULL,
+    time INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Notes (
+    id TEXT PRIMARY KEY NOT NULL,
+    timestamp INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    status TEXT NOT NULL,
+    tag TEXT NOT NULL,
+    title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    estimatedTime INTEGER NOT NULL,
+    priority INTEGER NOT NULL
+);
+
+CREATE TABLE Steps (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    note_id TEXT NOT NULL REFERENCES Notes(id),
+    isChecked INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    step_number INTEGER NOT NULL
+);
+
+CREATE INDEX index_sec_key ON Timer(sec_key);
+
+
+setTimer:
+INSERT INTO Timer(sec_key,time)
+VALUES (?,?);
+
+updateTimer:
+UPDATE Timer SET time = ? WHERE sec_key = 0;
+
+getTimer:
+SELECT time FROM Timer WHERE sec_key = 0;
+
+addNote:
+INSERT OR REPLACE INTO Notes(id,timestamp,text,status,tag,title,category,estimatedTime,priority)
+VALUES (?,?,?,?,?,?,?,?,?);
+
+getAllNotes:
+SELECT * FROM Notes;
+
+getNote:
+SELECT * FROM Notes WHERE id=:id;
+
+getUpdates:
+SELECT * FROM Notes WHERE status="NEW";
+
+deleteNote:
+DELETE FROM Notes WHERE id = :id;

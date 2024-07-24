@@ -1,0 +1,1 @@
+fun DoInitKoin() = initKoin()
