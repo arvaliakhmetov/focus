@@ -25,7 +25,7 @@ fun getHttpClient(): HttpClient = HttpClient {
             isLenient = true
             ignoreUnknownKeys = true
             explicitNulls = false
-            classDiscriminator = "object"
+            classDiscriminator = "object3"
         })
     }
 }
